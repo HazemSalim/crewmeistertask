@@ -5,33 +5,33 @@ import store from "../store";
 
 const { dispatch } = store;
 
-export function getAbsencesData() {
-  dispatch({
-    type: SET_LOADING,
-    payload: true,
-  });
+export async function getAbsencesData() {
+  // dispatch({
+  //   type: SET_LOADING,
+  //   payload: true,
+  // });
 
-  getAbsencesAPI()
-    .then((res) => res.json())
-    .then((res) => {
-      dispatch({
-        type: GET_ABSENCE,
-        payload: res,
-      });
+  try {
+    const data = await getAbsencesAPI();
 
-      return res;
-    })
-    .catch((err) => {
-      dispatch({
-        type: SET_ERROR,
-        payload: false,
-      });
-      return err;
+    const res = await data.json();
+
+    dispatch({
+      type: GET_ABSENCE,
+      payload: res.data,
     });
+    return res;
+  } catch (err) {
+    dispatch({
+      type: SET_ERROR,
+      payload: err,
+    });
+    return err;
+  }
 }
 
 export function downloadIcalFile(file) {
-    downloadIcalFileAPI(file)
+  downloadIcalFileAPI(file)
     .then((res) => res.blob())
     .then((res) => {
       return res;
