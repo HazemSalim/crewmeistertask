@@ -4,7 +4,7 @@ let initialState = {
     absences:[],
     total:0,
     isloading:true,
-    error:false
+    error:false 
 }
 
 const absenceReducer = function (state = initialState, action) {

@@ -1,21 +1,22 @@
-// import React, { useEffect, useState } from "react";
-// import {getAbsencesData} from "../State/Actions/absence";
+import React, { useEffect } from "react";
+import { useSelector} from "react-redux";
+import { getAbsencesData } from "../State/Actions/absence";
 
 function Absences() {
-  // const [absenceData, setAbsenceData] = useState([]);
+ 
+  const { absences, total, isloading, error } = useSelector(
+    (state) => state.absences
+  );
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await getAbsencesData();
-  //     console.log(data)
-  //     setAbsenceData(data.data);
-  //     console.log(data.data)
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      getAbsencesData();
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
-  return <div>Hello Crewmeister</div>;
+  return <div>Hello Crewmeister {total}</div>;
 }
 
 export default Absences;
