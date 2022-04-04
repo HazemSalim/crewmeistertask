@@ -1,19 +1,34 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { createBrowserHistory } from "history";
+import { Router } from "react-router";
 import { Provider } from "react-redux";
-import store from "./State/store";
+import { ThemeProvider } from "styled-components";
+import { Container } from "react-bootstrap";
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+import Routes from "./routes";
+import store from "./state/store";
+import theme from "./utils/theme";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const history = createBrowserHistory(store);
 
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router history={history}>
+        <ThemeProvider theme={theme}>
+          <Container>
+            <Routes />
+          </Container>
+        </ThemeProvider>
+      </Router>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 reportWebVitals();

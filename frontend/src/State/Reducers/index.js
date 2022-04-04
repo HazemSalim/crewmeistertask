@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-import absencesReducer  from "./absence";
+
+import absencesReducer from "../reducers/absences";
 
 const rootReducer = combineReducers({
-    absences:absencesReducer
+  absences: absencesReducer,
 });
 
 export default rootReducer;
