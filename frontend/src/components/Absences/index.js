@@ -121,7 +121,11 @@ const Absences = () => {
                 ) : (
                   <TableRow
                     noData
-                    text={handleMessage(loading, error, !absences.length)}
+                    text={handleMessage(
+                      loading,
+                      error,
+                      !absences || !absences.length
+                    )}
                   />
                 )}
               </tbody>

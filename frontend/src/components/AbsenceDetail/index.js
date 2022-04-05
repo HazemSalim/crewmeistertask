@@ -24,7 +24,7 @@ const AbsenceDetail = ({
         <Row>
           <Col xs={12} lg={6}>
             <b>Member name</b>
-            <br />
+            {/* <br /> */}
             {name}
           </Col>
           <Col xs={12} lg={6}>
